@@ -2,7 +2,6 @@ package posts
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -30,7 +29,6 @@ func (h *Handler) CreateComment(c *gin.Context){
 		})
 	}
 
-	fmt.Println("messafe from handlers : ",request)
 	if err:=h.postSVC.CreateComment(ctx,postID,userID,request); err != nil{
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),

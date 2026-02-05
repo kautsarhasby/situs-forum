@@ -11,6 +11,7 @@ import (
 type postService interface{
 	CreatePost (ctx context.Context,userId int64, request posts.CreatePostRequest) error
 	CreateComment(ctx context.Context,postID, userID int64, request posts.CreateCommentRequest) error
+	UpsertUserActivity (ctx context.Context, postID, userID int64, request posts.UserActivityRequest) error
 }
 
 
@@ -31,4 +32,5 @@ func (h *Handler) RegisterRoute(){
 	route.Use(middleware.AuthMiddleware())
 	route.POST("/create",h.CreatePost)
 	route.POST("/comment/:postID",h.CreateComment)
+	route.PUT("/user_activity/:postID", h.UpsertUserActivity)
 }

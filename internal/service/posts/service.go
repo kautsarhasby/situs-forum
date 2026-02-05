@@ -10,7 +10,9 @@ import (
 type postsRepository interface {
 	CreatePost(ctx context.Context, model posts.PostModel) error 
 	CreateComment(ctx context.Context, model posts.CommentModel) error
-	
+	GetUserActivities(ctx context.Context, model posts.UserActivityModel) (*posts.UserActivityModel, error)
+	CreateUserActivites(ctx context.Context, model posts.UserActivityModel) error
+	UpdateUserActivites(ctx context.Context, model posts.UserActivityModel) error
 }
 
 type service struct {

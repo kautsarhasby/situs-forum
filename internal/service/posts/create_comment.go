@@ -2,7 +2,6 @@ package posts
 
 import (
 	"context"
-	"fmt"
 	"strconv"
 	"time"
 
@@ -11,7 +10,6 @@ import (
 
 func (s *service) CreateComment(ctx context.Context,postID, userID int64, request posts.CreateCommentRequest) error {
 	now:= time.Now()
-	fmt.Println("message :",request.CommentContent)
 	model:= posts.CommentModel{
 		PostID: postID,
 		UserID: userID,
