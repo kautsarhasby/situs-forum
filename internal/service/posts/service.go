@@ -14,6 +14,9 @@ type postsRepository interface {
 	CreateUserActivites(ctx context.Context, model posts.UserActivityModel) error
 	UpdateUserActivites(ctx context.Context, model posts.UserActivityModel) error
 	GetAllPost(ctx context.Context, limit, offset int) (posts.GetAllPostResponse, error)
+	CountLikeByPostID(ctx context.Context, postID int64) (int, error)
+	GetCommentsByID(ctx context.Context, postID int64) ([]posts.Comment, error)
+	GetPostByID(ctx context.Context, id int64) (*posts.Post, error)
 }
 
 type service struct {

@@ -37,10 +37,24 @@ type (
 		PostTitle    string   `json:"postTitle"`
 		PostContent  string   `json:"postContent"`
 		PostHashtags []string `json:"postHashtags"`
+		IsLiked      bool     `json:"isLiked"`
 	}
 
 	Pagination struct {
 		Limit  int `json:"limit"`
 		Offset int `json:"offset"`
+	}
+
+	GetPostResponse struct {
+		PostDetail Post      `json:"postDetail"`
+		LikeCount  int       `json:"likeCount"`
+		Comments   []Comment `json:"comment"`
+	}
+
+	Comment struct {
+		ID             int64  `json:"id"`
+		UserID         int64  `json:"userID"`
+		Username       string `json:"username"`
+		CommentContent string `json:"commentContent"`
 	}
 )
