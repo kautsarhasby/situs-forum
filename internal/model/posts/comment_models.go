@@ -13,11 +13,11 @@ type (
 		ID int64 `db:"id"`
 		UserID int64 `db:"user_id"`
 		PostID int64	`db:"post_id"`
-		CommentContent string `db:"postContent"`
-		CreatedAt time.Time `db:"createdAt"`
-		UpdatedAt time.Time `db:"updatedAt"`
-		CreatedBy string `db:"createdBy"`
-		UpdatedBy string `db:"updatedBy"`
+		CommentContent string `db:"comment_content"`
+		CreatedAt time.Time `db:"created_at"`
+		UpdatedAt time.Time `db:"updated_at"`
+		CreatedBy string `db:"created_by"`
+		UpdatedBy string `db:"updated_by"`
 	}
  )
     

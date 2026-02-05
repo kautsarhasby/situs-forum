@@ -27,9 +27,9 @@ type (
 		Email string `db:"email"`
 		Username string `db:"username"`
 		Password string `db:"password"`
-		CreatedAt time.Time `db:"createdAt"`
-		UpdatedAt time.Time `db:"updatedAt"`
-		CreatedBy string `db:"createdBy"`
-		UpdatedBy string `db:"updatedBy"`
+		CreatedAt time.Time `db:"created_at"`
+		UpdatedAt time.Time `db:"updated_at"`
+		CreatedBy string `db:"created_by"`
+		UpdatedBy string `db:"updated_by"`
 	}
 )
