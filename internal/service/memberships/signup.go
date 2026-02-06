@@ -10,7 +10,7 @@ import (
 )
 
 func (s *service) SignUp(ctx context.Context, request memberships.SignUpRequest) error {
-	user,err := s.membershiprepo.GetUser(ctx, request.Email, request.Username)
+	user, err := s.membershipRepo.GetUser(ctx, request.Email, request.Username, 0)
 	if err != nil {
 		return err
 	}
@@ -19,20 +19,20 @@ func (s *service) SignUp(ctx context.Context, request memberships.SignUpRequest)
 		return errors.New("username or email alerady exists")
 	}
 
-	pass, err:= bcrypt.GenerateFromPassword([]byte(request.Password), bcrypt.DefaultCost)
+	pass, err := bcrypt.GenerateFromPassword([]byte(request.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return err
 	}
 
-	now:= time.Now()
-	model := memberships.UserModel {
-		Email : request.Email,
-		Username : request.Username,
-		Password : string(pass),
+	now := time.Now()
+	model := memberships.UserModel{
+		Email:     request.Email,
+		Username:  request.Username,
+		Password:  string(pass),
 		CreatedAt: now,
-		UpdatedAt : now,
-		CreatedBy : request.Email,
+		UpdatedAt: now,
+		CreatedBy: request.Email,
 		UpdatedBy: request.Email,
 	}
-	return s.membershiprepo.CreateUser(ctx, model)
+	return s.membershipRepo.CreateUser(ctx, model)
 }

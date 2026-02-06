@@ -2,7 +2,6 @@ package posts
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -10,37 +9,33 @@ import (
 	"github.com/kautsarhasby/situs-forum/internal/model/posts"
 )
 
-func (h *Handler) UpsertUserActivity (c *gin.Context) {
+func (h *Handler) UpsertUserActivity(c *gin.Context) {
 	ctx := c.Request.Context()
 
 	var request posts.UserActivityRequest
-	if err := c.ShouldBindJSON(&request); err !=nil {
+	if err := c.ShouldBindJSON(&request); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error" : err.Error(),
+			"error": err.Error(),
 		})
 		return
 	}
 
 	userID := c.GetInt64("userID")
 	postIDStr := c.Param("postID")
-	postID, err:= strconv.ParseInt(postIDStr,10,64)
+	postID, err := strconv.ParseInt(postIDStr, 10, 64)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error" : errors.New("PostID on params invalid"),
+			"error": errors.New("PostID on params invalid"),
 		})
 		return
 	}
 
-	if err := h.postSVC.UpsertUserActivity(ctx,postID,userID, request); err != nil {
-		fmt.Println("reqeeuest post id :", postID)
-		fmt.Println("reqeeuest user id:", userID)
-		fmt.Println("reqeeuest :", request)
+	if err := h.postSVC.UpsertUserActivity(ctx, postID, userID, request); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error" : errors.New("Failed to update or insert"),
+			"error": errors.New("Failed to update or insert"),
 		})
 		return
 	}
 
-	
 	c.Status(http.StatusOK)
 }
