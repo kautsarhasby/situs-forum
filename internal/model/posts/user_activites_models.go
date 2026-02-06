@@ -2,22 +2,22 @@ package posts
 
 import "time"
 
+
 type (
-	CreateCommentRequest struct{
-		CommentContent	string `json:"commentContent"`
+	UserActivityRequest struct{
+		IsLiked bool `json:"isLiked"`
 	}
 )
 
- type (
-	CommentModel struct {
+type (
+	UserActivityModel struct {
 		ID int64 `db:"id"`
 		UserID int64 `db:"user_id"`
-		PostID int64	`db:"post_id"`
-		CommentContent string `db:"comment_content"`
+		PostID int64 `db:"post_id"`
+		IsLiked bool `db:"is_liked"`
 		CreatedAt time.Time `db:"created_at"`
 		UpdatedAt time.Time `db:"updated_at"`
 		CreatedBy string `db:"created_by"`
 		UpdatedBy string `db:"updated_by"`
 	}
- )
-    
+)
